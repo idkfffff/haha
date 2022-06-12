@@ -8,8 +8,8 @@ function Load()
 		if isfolder("SaveDeScript") == false then
 			makefolder("Save")
 		end
-		if isfile("/Save/Most1-" .. game.Players.LocalPlayer.Name .. ".json") == false then
-			writefile("/Save/Most1-" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(SaveSettings))
+		if isfile("/Save2/Most2-" .. game.Players.LocalPlayer.Name .. ".json") == false then
+			writefile("/Save2/Most2-" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(SaveSettings))
 		else
 			local Decode = game:GetService("HttpService"):JSONDecode(readfile("/Save/Most1-" .. game.Players.LocalPlayer.Name .. ".json"))
 			for i,v in pairs(Decode) do
@@ -23,15 +23,15 @@ function Load()
 end
 function Save()
 	if readfile and writefile and isfile then
-		if isfile("/Save/Most1-" .. game.Players.LocalPlayer.Name .. ".json") == false then
+		if isfile("/Save2/Most2-" .. game.Players.LocalPlayer.Name .. ".json") == false then
 			Load()
 		else
-			local Decode = game:GetService("HttpService"):JSONDecode(readfile("/Save/Most1-" .. game.Players.LocalPlayer.Name .. ".json"))
+			local Decode = game:GetService("HttpService"):JSONDecode(readfile("/Save2/Most2-" .. game.Players.LocalPlayer.Name .. ".json"))
 			local Array = {}
 			for i,v in pairs(SaveSettings) do
 				Array[i] = v
 			end
-			writefile("/Save/Most1-" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
+			writefile("/Save2/Most2-" .. game.Players.LocalPlayer.Name .. ".json", game:GetService("HttpService"):JSONEncode(Array))
 		end
 	else
 		warn("Failed Save")
@@ -45,7 +45,7 @@ Save()
 
 if SaveSettings["Main"]["Save"] == false then
 	SaveSettings["Main"]["Save"] = true
-	saveinstance()
+	saveinstance(game)
 	
 	SaveSettings["Main"]["Save"] = true
 	Save()
@@ -92,4 +92,4 @@ if SaveSettings["Main"]["Save"] == false then
 		end
 	end
 	coroutine.wrap(XVHF_fake_script)()
-end -- sus
+end
