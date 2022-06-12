@@ -92,4 +92,4 @@ if SaveSettings["Main"]["Save"] == false then
 		end
 	end
 	coroutine.wrap(XVHF_fake_script)()
-end
+end -- sus
